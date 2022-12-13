@@ -22,14 +22,19 @@ public class MemoController {
     @PostMapping("/api/memos")
     public Memo postMemos(@RequestBody MemoRequestDto requestDto){
         Memo memo = new Memo(requestDto);
-
-        return memo;
+        return memoRepository.save(memo);
     }
 
 
     private final MemoService memoService;
     @PutMapping("/api/memos/{id}")
     public Long update(@PathVariable Long id, @RequestBody MemoRequestDto requestDto){
-        return memoService.update(requestDto);
+        return memoService.update(id, requestDto);
+    }
+
+    @DeleteMapping("/api/memos/{id}")
+    public Long delete(@PathVariable Long id){
+        memoRepository.deleteById(id);
+        return id;
     }
 }

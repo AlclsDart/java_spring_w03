@@ -24,4 +24,9 @@ public class Memo extends TimeStamped {
         this.userId = requestDto.getUserId();
         this.contents = requestDto.getContents();
     }
+
+    public void update(MemoRequestDto requestDto){
+        this.userId = requestDto.getUserId();
+        this.contents = requestDto.getContents();
+    }
 }
