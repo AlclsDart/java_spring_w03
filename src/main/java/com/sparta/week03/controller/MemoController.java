@@ -16,7 +16,7 @@ public class MemoController {
 
     @GetMapping("/api/memos")
     public List<Memo> getMemos(){
-        return memoRepository.findAll();
+        return memoRepository.findAllByOrderByModifiedAtDesc();
     }
 
     @PostMapping("/api/memos")
