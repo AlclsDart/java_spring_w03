@@ -285,15 +285,15 @@
                         let contents = memo.contents;
                         let modifiedAt = memo.modfiedAt;
                         addHTML(id, username, contents, modifiedAt);
-                        alert(1);
+                        // alert(1);
                     }
                 }
             });
-
-            // 메모 하나를 HTML로 만들어서 body 태그 내 원하는 곳에 붙입니다.
-            function addHTML(id, username, contents, modifiedAt) {
-                // 1. HTML 태그를 만듭니다.
-                let tempHtml = `<div class="card">
+        }
+        // 메모 하나를 HTML로 만들어서 body 태그 내 원하는 곳에 붙입니다.
+        function addHTML(id, username, contents, modifiedAt) {
+            // 1. HTML 태그를 만듭니다.
+            let tempHtml = `<div class="card">
         <!-- date/username 영역 -->
         <div class="metadata">
             <div class="date">
@@ -319,13 +319,14 @@
             <img id="${id}-submit" class="icon-end-edit" src="images/done.png" alt="" onclick="submitEdit('${id}')">
         </div>
     </div>`;
-                // 2. #cards-box 에 HTML을 붙인다.
-                $('#cards-box').append(tempHtml);
-            }
+            // 2. #cards-box 에 HTML을 붙인다.
+            $('#cards-box').append(tempHtml);
+        }
 
             // 메모를 생성합니다.
             function writePost() {
                 // 1. 작성한 메모를 불러옵니다.
+                // alert(1);
                 let contents = $('#contents').val();
                 // 2. 작성한 메모가 올바른지 isValidContents 함수를 통해 확인합니다.
                 if (isValidContents(contents) == false) {
@@ -347,7 +348,6 @@
                     }
                 });
             }
-        }
 
         // 메모를 수정합니다.
         function submitEdit(id) {
