@@ -264,6 +264,7 @@
 
         $(document).ready(function () {
             // HTML 문서를 로드할 때마다 실행합니다.
+            // alert("getmessage");
             getMessages();
         })
 
@@ -272,7 +273,6 @@
             // 1. 기존 메모 내용을 지웁니다.
             $('#cards-box').empty();
             // 2. 메모 목록을 불러와서 HTML로 붙입니다.
-            let data = {'userId': username, 'contents': contents};
             // 5. POST /api/memos 에 data를 전달합니다.
             $.ajax({
                 type: "GET",
@@ -283,9 +283,9 @@
                         let id = memo.id;
                         let username = memo.userId;
                         let contents = memo.contents;
-                        let modifiedAt = memo.modfiedAt;
+                        let modifiedAt = memo.modifiedAt;
                         addHTML(id, username, contents, modifiedAt);
-                        // alert(1);
+                        console.log('id:['+id+"]username:["+username+"]contents:["+contents+"]modifiedAt:["+modifiedAt+"]");
                     }
                 }
             });
@@ -294,31 +294,31 @@
         function addHTML(id, username, contents, modifiedAt) {
             // 1. HTML 태그를 만듭니다.
             let tempHtml = `<div class="card">
-        <!-- date/username 영역 -->
-        <div class="metadata">
-            <div class="date">
-                ${modifiedAt}
-            </div>
-            <div id="${id}-username" class="username">
-                ${username}
-            </div>
-        </div>
-        <!-- contents 조회/수정 영역-->
-        <div class="contents">
-            <div id="${id}-contents" class="text">
-                ${contents}
-            </div>
-            <div id="${id}-editarea" class="edit">
-                <textarea id="${id}-textarea" class="te-edit" name="" id="" cols="30" rows="5"></textarea>
-            </div>
-        </div>
-        <!-- 버튼 영역-->
-        <div class="footer">
-            <img id="${id}-edit" class="icon-start-edit" src="images/edit.png" alt="" onclick="editPost('${id}')">
-            <img id="${id}-delete" class="icon-delete" src="images/delete.png" alt="" onclick="deleteOne('${id}')">
-            <img id="${id}-submit" class="icon-end-edit" src="images/done.png" alt="" onclick="submitEdit('${id}')">
-        </div>
-    </div>`;
+                            <!-- date/username 영역 -->
+                            <div class="metadata">
+                                <div class="date">
+                                    ${modifiedAt}
+                                </div>
+                                <div id="${id}-username" class="username">
+                                    ${username}
+                                </div>
+                            </div>
+                            <!-- contents 조회/수정 영역-->
+                            <div class="contents">
+                                <div id="${id}-contents" class="text">
+                                    ${contents}
+                                </div>
+                                <div id="${id}-editarea" class="edit">
+                                    <textarea id="${id}-textarea" class="te-edit" name="" id="" cols="30" rows="5"></textarea>
+                                </div>
+                            </div>
+                            <!-- 버튼 영역-->
+                            <div class="footer">
+                                <img id="${id}-edit" class="icon-start-edit" src="images/edit.png" alt="" onclick="editPost('${id}')">
+                                <img id="${id}-delete" class="icon-delete" src="images/delete.png" alt="" onclick="deleteOne('${id}')">
+                                <img id="${id}-submit" class="icon-end-edit" src="images/done.png" alt="" onclick="submitEdit('${id}')">
+                            </div>
+                        </div>`;
             // 2. #cards-box 에 HTML을 붙인다.
             $('#cards-box').append(tempHtml);
         }

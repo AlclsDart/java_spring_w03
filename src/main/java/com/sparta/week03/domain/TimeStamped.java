@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+
 @MappedSuperclass // Entity가 자동으로 컬럼으로 인식합니다.
 @Getter
 @EntityListeners(AuditingEntityListener.class)
